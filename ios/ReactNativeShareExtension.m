@@ -51,9 +51,12 @@ RCT_REMAP_METHOD(data,
         if(err) {
             reject(@"error", err.description, nil);
         } else {
+           NSData *dd = [NSData dataWithContentsOfURL:[NSURL URLWithString:val]];
+            NSString *size = [NSString stringWithFormat:@"%lu",(unsigned long)dd.length] ;
             resolve(@{
                       @"type": contentType,
-                      @"value": val
+                      @"value": val,
+                      @"size" : size,
                       });
         }
     }];
